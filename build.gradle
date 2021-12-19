@@ -1,0 +1,45 @@
+import java.nio.charset.StandardCharsets
+
+plugins {
+	id 'war'
+	id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+//	Tomcat8/9
+//	implementation('javax.servlet:javax.servlet-api:4.0.1')
+//	Tomcat10
+	implementation('jakarta.servlet:jakarta.servlet-api:5.0.0')
+	implementation('com.google.code.gson:gson:2.8.9')
+	implementation('org.apache.logging.log4j:log4j-core:2.17.0')
+	compileOnly('org.projectlombok:lombok:1.18.22')
+	annotationProcessor('org.projectlombok:lombok:1.18.22')
+
+	testCompileOnly('org.projectlombok:lombok:1.18.22')
+	testAnnotationProcessor('org.projectlombok:lombok:1.18.22')
+	testImplementation('org.mockito:mockito-core:4.2.0')
+	testImplementation('org.assertj:assertj-core:3.21.0')
+	testImplementation('org.apache.logging.log4j:log4j-core:2.17.0')
+	testImplementation('org.junit.jupiter:junit-jupiter:5.8.2')
+	testRuntimeOnly('org.junit.platform:junit-platform-launcher')
+}
+
+java {
+	sourceCompatibility(JavaVersion.VERSION_17)
+	targetCompatibility(JavaVersion.VERSION_17)
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding(StandardCharsets.UTF_8.name())
+}
+
+test {
+	useJUnitPlatform()
+}
