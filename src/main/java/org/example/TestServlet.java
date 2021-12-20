@@ -22,7 +22,7 @@ public class TestServlet extends HttpServlet {
 		Student student = new Student("AntsCode", "man");
 		Gson gson = new Gson();
 		response.setHeader("Content-Type", "application/json");
-		response.getWriter().println(gson.toJson(student));
+		response.getWriter().print(gson.toJson(student));
 	}
 
 }
